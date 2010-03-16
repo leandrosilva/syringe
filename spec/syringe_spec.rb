@@ -1,7 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe Syringe::Container do
-  context 'when created' do
+  context 'when instantiated' do
     subject do
       Syringe::Container.new
     end
@@ -29,6 +29,20 @@ describe Syringe::Container do
       lambda {
         subject[:some_string]
       }.should raise_error Syringe::MissingServiceError
+    end
+  end
+  
+  context 'when used as default container instance' do
+    context 'and configured with registered objects' do
+      it 'should be able to do dependency injection on classes' do
+        default_container = Syringe::Container.default
+        default_container.register(:service_uri) { |container| 'http://services.syringe.org/api' }
+        
+        service_consumer = SyringeHelperClasses::ServiceConsumer.new
+
+        service_consumer.respond_to?(:service_uri).should == true
+        service_consumer.service_uri.should == 'http://services.syringe.org/api'
+      end
     end
   end
 end

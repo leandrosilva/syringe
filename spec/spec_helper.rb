@@ -1,9 +1,11 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-require 'squirt'
-require 'spec'
-require 'spec/autorun'
 
-Spec::Runner.configure do |config|
-  
+require 'syringe'
+require 'spec'
+
+module SyringeHelperClasses
+  class ServiceConsumer
+    inject :service_uri
+  end
 end

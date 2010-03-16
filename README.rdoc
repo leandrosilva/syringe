@@ -12,14 +12,39 @@ http://onestepback.org/index.cgi/Tech/Ruby/DependencyInjectionInRuby.rdoc
 
   gem install syringe --pre -s http://gemcutter.org
 
-== Example
+== Examples
 
+==== First example with taste of service locator pattern
+
+  # on application bootstrap
   container = Syringe::Container.new
   container.register(:service_uri) { |container| 'http://services.syringe.org/api' }
   container.register(:service_consumer) { |container| ServiceConsumer.new(container[:service_uri]) }
   
+  ...
+  
+  # anywhere in the code
   puts container[:service_uri]   # http://services.syringe.org/api
   puts container.service_uri     # http://services.syringe.org/api
+
+==== Second example with the best taste of dependency injection
+
+  # on application bootstrap
+  default_container = Syringe::Container.default
+  default_container.register(:service_uri) { |container| 'http://services.syringe.org/api' }
+  
+  ...
+  
+  # in some class
+  class ServiceConsumer
+    inject :service_uri
+  end
+  
+  ...
+  
+  # anywhere in the code
+  service_consumer = ServiceConsumer.new
+  puts service_consumer.service_uri   # 'http://services.syringe.org/api'
 
 == See more on
 
