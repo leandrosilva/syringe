@@ -1,0 +1,30 @@
+= syringe
+
+A very lightweight dependency injection container for Ruby.
+
+==== Special Thanks
+
+Hey Jim Weirich, thanks for inspiration. You are the man!
+
+http://onestepback.org/index.cgi/Tech/Ruby/DependencyInjectionInRuby.rdoc
+
+== Install
+
+  gem install syringe --pre -s http://gemcutter.org
+
+== Example
+
+  container = Syringe::Container.new
+  container.register(:service_uri) { |container| 'http://services.syringe.org/api' }
+  container.register(:service_consumer) { |container| ServiceConsumer.new(container[:service_uri]) }
+  
+  puts container[:service_uri]   # http://services.syringe.org/api
+  puts container.service_uri     # http://services.syringe.org/api
+
+== See more on
+
+http://github.com/leandrosilva/syringe/tree/master/spec
+
+== Copyright
+
+Copyright (c) 2010 Leandro Silva (CodeZone) <leandrodoze@gmail.com>. See LICENSE for details.
