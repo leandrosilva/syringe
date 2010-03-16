@@ -2,9 +2,11 @@
 
 A very lightweight dependency injection container for Ruby.
 
+It born from a real need in one of my current projects (at Locaweb). I'm only scratching our itch. If you have the same itch, join us!
+
 ==== Special Thanks
 
-Hey Jim Weirich, thanks for inspiration. You are the man!
+Hey Jim Weirich, thanks for initial code and inspiration. You are the man!
 
 http://onestepback.org/index.cgi/Tech/Ruby/DependencyInjectionInRuby.rdoc
 
