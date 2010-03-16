@@ -39,7 +39,7 @@ http://onestepback.org/index.cgi/Tech/Ruby/DependencyInjectionInRuby.rdoc
   
   # in some class
   class ServiceConsumer
-    inject :service_uri
+    inject :service_uri   # it will create a new method and instance variable with that name
   end
   
   ...
